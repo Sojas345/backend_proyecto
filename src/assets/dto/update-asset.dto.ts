@@ -17,7 +17,7 @@ export class UpdateAssetDto {
   @IsNotEmpty()
   @IsString()
   @IsOptional()
-  asignadoA?: string;
+  cedula?: string;
   @IsNotEmpty()
   @IsString()
   @IsOptional()

@@ -15,7 +15,7 @@ export class User {
   contraseñaUsuario: string;
 
   @Column({default: 'user'})
-  rol: string;
+  role: string;
 
   @CreateDateColumn()
   createdAt: Date;

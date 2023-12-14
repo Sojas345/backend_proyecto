@@ -22,6 +22,7 @@ export class Asset {
 
   @ManyToOne(() => Employee, (employee) => employee.id, {
     eager: true,
+    nullable: true,
   })
   employee: Employee;
 }

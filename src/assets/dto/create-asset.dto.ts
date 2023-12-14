@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsPositive, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString } from "class-validator";
 
 export class CreateAssetDto {
     @IsString()
@@ -12,7 +12,8 @@ export class CreateAssetDto {
     descripcion: string;
     @IsNotEmpty()
     @IsString ()
-    cedula: number;
+    @IsOptional()
+    cedula?: number;
     @IsNotEmpty()
     @IsString()
     fechaAsignacion: string;
