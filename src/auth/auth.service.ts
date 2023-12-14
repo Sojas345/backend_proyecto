@@ -9,6 +9,7 @@ import { RegisterDto } from './dto/register.dto';
 import * as bcryptjs from 'bcryptjs';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
+import { Role } from 'src/common/enums/rol.enum';
 
 @Injectable()
 export class AuthService {
@@ -21,6 +22,7 @@ export class AuthService {
     nombreUsuario,
     correoUsuario,
     contraseñaUsuario,
+
   }: RegisterDto) {
     const user = await this.usersService.findOneByEmail(correoUsuario);
 
@@ -41,7 +43,7 @@ export class AuthService {
   }
 
   async login({ correoUsuario, contraseñaUsuario }: LoginDto) {
-    const user = await this.usersService.findOneByEmail(correoUsuario);
+    const user = await this.usersService.findByEmailWhitPassword(correoUsuario);
 
     if (!user) {
       throw new UnauthorizedException('email incorrect');

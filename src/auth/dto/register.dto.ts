@@ -1,5 +1,7 @@
 import { Transform } from "class-transformer";
 import { IsEmail, IsString, MinLength, minLength } from "class-validator";
+import { Role } from "src/common/enums/rol.enum";
+import { Column } from "typeorm";
 
 export class RegisterDto {
     @IsString()
