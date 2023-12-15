@@ -8,6 +8,8 @@ import { Roles } from './decorators/roles.decorator';
 import { RolesGuard } from './guard/roles.guard';
 import { Role } from '../common/enums/rol.enum';
 import { Auth } from './decorators/auth.decorator';
+import { ActiveUser } from 'src/common/decorators/active-user-decorator';
+import { UserActiveInterface } from 'src/common/interfaces/user-active.interface';
 
 interface RequestWithUser extends Request {
   user: {
@@ -38,20 +40,8 @@ export class AuthController {
 
   @Get('profile') //Aqui se pueden definir rutas
   @Auth(Role.USER)
-  profile(
-    @Req()
-    req: RequestWithUser,
-  ) {
-    return this.authService.profile(req.user);
+  profile(@ActiveUser() user: UserActiveInterface) {
+    console.log(user);
+    return this.authService.profile(user);
   }
-
-  // @Get('profile') //Aqui se pueden definir rutas
-  // @Roles(Role.ADMIN)
-  // @UseGuards(AuthGuard, RolesGuard)
-  // profile(
-  //   @Req()
-  //   req: RequestWithUser,
-  // ) {
-  //   return this.authService.profile(req.user);
-  // }
 }

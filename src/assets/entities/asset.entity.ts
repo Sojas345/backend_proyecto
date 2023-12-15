@@ -1,5 +1,6 @@
-import { Employee } from "src/employees/entities/employee.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne } from "typeorm";
+import { User } from "../../users/entities/user.entity";
+import { Employee } from "../../employees/entities/employee.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne } from "typeorm";
 
 @Entity()
 export class Asset {
@@ -25,5 +26,11 @@ export class Asset {
     nullable: true,
   })
   employee: Employee;
-}
 
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'email', referencedColumnName: 'correoUsuario',})
+  user: User;
+
+  @Column()
+  correoUsuario: string;
+}
