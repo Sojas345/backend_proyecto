@@ -2,7 +2,7 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-image]: [https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wattpad.com%2F627818247-%25EF%25BD%258D%25EF%25BD%2585%25EF%25BD%258D%25EF%25BD%2585%25EF%25BD%2593-cursed-images-ooooofffff&psig=AOvVaw2WxM0l9iTyGnKs_CNM1q5o&ust=1702743352435000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPDTibjrkYMDFQAAAAAdAAAAABAD)
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
