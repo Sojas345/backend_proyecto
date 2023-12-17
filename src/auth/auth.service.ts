@@ -44,29 +44,33 @@ export class AuthService {
 
   async login({ correoUsuario, contraseñaUsuario }: LoginDto) {
     const user = await this.usersService.findByEmailWhitPassword(correoUsuario);
-
+  
     if (!user) {
       throw new UnauthorizedException('email incorrect');
     }
-
+  
     const isPasswordValid = await bcryptjs.compare(
       contraseñaUsuario,
       user.contraseñaUsuario,
     );
-
+  
     if (!isPasswordValid) {
       throw new UnauthorizedException('password incorrect');
     }
-
+  
     const payload = { correoUsuario: user.correoUsuario, role: user.role };
-
+  
     const token = await this.jwtService.sign(payload);
-
+  
     return {
-      token,
-      correoUsuario,
+      'success': {
+        token,
+        correoUsuario,
+        message: 'Inicio de sesión correcto',
+      },
     };
   }
+  
 
   async profile({
     correoUsuario,

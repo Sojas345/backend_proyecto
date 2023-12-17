@@ -11,10 +11,10 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '127.0.0.1',
-      port: 3306,
-      username: 'root',
-      password: '',
+      host: 'localhost',
+      port: 3307,
+      username: 'user_crud',
+      password: 'root',
       database: 'db_crud',
       autoLoadEntities: true,
       synchronize: true,
