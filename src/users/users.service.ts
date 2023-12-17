@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { Role } from 'src/common/enums/rol.enum';
+import * as bcryptjs from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -33,12 +34,42 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  // findOne(id: number) {
+  //   return `This action returns a #${id} user`;
+  // }
+
+  async findOneById(id: number): Promise<User | undefined> {
+    const user = await this.userRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  // update(id: number, updateUserDto: UpdateUserDto) {
+  //   return `This action updates a #${id} user`;
+  // }
+
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    // Actualiza propiedades del usuario con los datos de UpdateUserDto
+    user.nombreUsuario = updateUserDto.nombreUsuario;
+    user.correoUsuario = updateUserDto.correoUsuario;
+
+    // Verifica si se proporcionó una nueva contraseña antes de encriptarla
+    if (updateUserDto.contraseñaUsuario) {
+      const hashedPassword = await bcryptjs.hash(updateUserDto.contraseñaUsuario, 10);
+      user.contraseñaUsuario = hashedPassword;
+    }
+
+    return this.userRepository.save(user);
   }
 
   async delete(id: number): Promise<string> {
