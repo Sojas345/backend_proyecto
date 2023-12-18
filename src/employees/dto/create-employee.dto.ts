@@ -26,6 +26,9 @@ export class IsNotTooLong implements ValidatorConstraintInterface {
 
 export class CreateEmployeeDto {
     @IsNumber()
+    id?: number;
+    
+    @IsNumber()
     @IsPositive()
     @IsNotEmpty()
     @Validate(IsLongEnough, {

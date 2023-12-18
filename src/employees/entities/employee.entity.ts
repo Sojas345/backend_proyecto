@@ -3,7 +3,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany } from "t
 
 @Entity()
 export class Employee {
-  @Column({ primary: true, generated: true })
+  @Column({ primary: true, generated: "increment" })
   id: number;
 
   @Column()
