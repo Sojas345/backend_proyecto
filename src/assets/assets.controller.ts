@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpS
 import { AssetsService } from './assets.service';
 import { CreateAssetDto } from './dto/create-asset.dto';
 import { UpdateAssetDto } from './dto/update-asset.dto';
-import { error } from 'console';
 
 @Controller('assets')
 export class AssetsController {
@@ -15,29 +14,17 @@ export class AssetsController {
 
   @Get()
   findAll() {
-    return this.assetsService.findAll().then(res=>{
-      return {data: res}
-    }). catch(error=> {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
-    })
+    return this.assetsService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.assetsService.findOne(id).then(res=>{
-      return {data: res}
-    }). catch(error=> {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
-    })
+    return this.assetsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateAssetDto: UpdateAssetDto) {
-    return this.assetsService.update(id, updateAssetDto).then(res=>{
-      return {data: res}
-    }). catch(error=> {
-      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
-    })
+    return this.assetsService.update(id, updateAssetDto);
   }
 
   @Delete(':id')

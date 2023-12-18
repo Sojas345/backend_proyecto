@@ -3,7 +3,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne } from "t
 
 @Entity()
 export class Asset {
-  @Column({ primary: true, generated: true })
+  @Column({ primary: true, generated: "increment" })
   id: number;
   @Column()
   codigo: string;
